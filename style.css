@@ -1,0 +1,122 @@
+:root {
+  --off-white: #f8f9ff;
+  --dark-grey: #374151;
+}
+
+body,
+h2,
+p {
+  margin: 0;
+}
+
+body {
+  direction: rtl;
+  font-family: "Segoe UI", sans-serif;
+}
+
+button,
+.tasks-table {
+  box-shadow: 0 3px 5px rgba(168, 168, 168, 0.38);
+}
+
+button {
+  border: none;
+}
+
+button.circular-btn,
+.container {
+  background-color: var(--off-white);
+}
+
+button.circular-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.container {
+  height: 100vh;
+}
+
+.center-div,
+.header,
+.task,
+.task-info,
+.task-actions {
+  display: flex;
+}
+
+.center-div,
+.header,
+.task {
+  align-items: center;
+}
+
+.center-div {
+  justify-content: center;
+  width: 100%;
+  position: absolute;
+  top: 10%;
+}
+
+.header,
+.task,
+.tasks-table {
+  border-radius: 2px;
+}
+
+.tasks-table {
+  background-color: #ecedf6;
+  width: 60%;
+}
+
+.header,
+.task {
+  justify-content: space-between;
+  padding: 10px;
+}
+
+.header {
+  background-color: #785dc8;
+}
+
+.title {
+  flex-grow: 1;
+  text-align: center;
+  color: var(--off-white);
+}
+
+.tasks {
+  padding: 10px;
+}
+
+.task {
+  background-color: #ffffff;
+  border-bottom: 1px solid var(--dark-grey);
+  transition: box-shadow 0.2s;
+}
+
+.task:hover {
+  box-shadow: 0 5px 10px rgba(97, 97, 97, 0.8);
+}
+
+.task-info,
+.task-actions {
+  gap: 10px;
+}
+
+.task-info {
+  flex-direction: column;
+}
+
+.task-info p {
+  color: var(--dark-grey);
+}
+
+.task-info span {
+  color: #9ca3af;
+}
+
+.task-actions {
+}
