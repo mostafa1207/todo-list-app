@@ -36,7 +36,7 @@ button.circular-btn {
 }
 
 .container {
-  height: 100vh;
+  min-height: 100vh;
 }
 
 .center-div,
@@ -87,7 +87,7 @@ button.circular-btn {
   color: var(--off-white);
 }
 
-.tasks {
+#tasks {
   padding: 10px;
 }
 
@@ -95,6 +95,10 @@ button.circular-btn {
   background-color: #ffffff;
   border-bottom: 1px solid var(--dark-grey);
   transition: box-shadow 0.2s;
+}
+
+.task:not(:last-child) {
+  margin-bottom: 10px;
 }
 
 .task:hover {
