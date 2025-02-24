@@ -1,20 +1,4 @@
-const tasks = [
-  {
-    title: "قراءة كتاب",
-    date: "1/1/2001",
-    isDone: false,
-  },
-  {
-    title: "إنهاء المشروع",
-    date: "2/1/2001",
-    isDone: false,
-  },
-  {
-    title: "التسوق",
-    date: "3/1/2001",
-    isDone: false,
-  },
-];
+import { tasks } from "./tasks.js";
 
 function createBtns() {
   const btns = [];
@@ -64,26 +48,4 @@ function appendTasks() {
   tasksContainer.append(...tasksDivs);
 }
 
-appendTasks();
-
-document.getElementById("add-btn").addEventListener("click", () => {
-  const taskTitle = prompt("الرجاء إدخال المهمة الجديدة");
-
-  if (!taskTitle) return;
-
-  const date = new Date();
-  const year = date.getFullYear();
-  const month = date.getMonth() + 1;
-  const day = date.getDate();
-  const dateStr = `${day}/${month}/${year}`;
-
-  const newTask = {
-    title: taskTitle,
-    date: dateStr,
-    isDone: false,
-  };
-
-  tasks.push(newTask);
-
-  appendTasks();
-});
+export { appendTasks };
