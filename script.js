@@ -57,7 +57,33 @@ function createTasksDivs() {
   return tasksDivs;
 }
 
-const tasksContainer = document.getElementById("tasks");
-tasksContainer.innerHTML = "";
-const tasksDivs = createTasksDivs();
-tasksContainer.append(...tasksDivs);
+function appendTasks() {
+  const tasksContainer = document.getElementById("tasks");
+  tasksContainer.innerHTML = "";
+  const tasksDivs = createTasksDivs();
+  tasksContainer.append(...tasksDivs);
+}
+
+appendTasks();
+
+document.getElementById("add-btn").addEventListener("click", () => {
+  const taskTitle = prompt("الرجاء إدخال المهمة الجديدة");
+
+  if (!taskTitle) return;
+
+  const date = new Date();
+  const year = date.getFullYear();
+  const month = date.getMonth() + 1;
+  const day = date.getDate();
+  const dateStr = `${day}/${month}/${year}`;
+
+  const newTask = {
+    title: taskTitle,
+    date: dateStr,
+    isDone: false,
+  };
+
+  tasks.push(newTask);
+
+  appendTasks();
+});
