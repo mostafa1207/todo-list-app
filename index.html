@@ -21,18 +21,24 @@
           <!-- tasks -->
           <div id="tasks">
             <!-- task -->
-            <div class="task">
+            <div class="task" data-id="0">
               <!-- task info -->
               <div class="task-info">
-                <p>task</p>
+                <p class="task-title">task</p>
                 <span>date</span>
               </div>
               <!--// task info //-->
               <!-- task actions -->
               <div class="task-actions">
-                <button class="circular-btn">❌</button>
-                <button class="circular-btn">✅</button>
-                <button class="circular-btn">✏️</button>
+                <button id="delete-btn" class="circular-btn delete-btn">
+                  ❌
+                </button>
+                <button id="complete-btn" class="circular-btn done-btn">
+                  ✅
+                </button>
+                <button id="update-btn" class="circular-btn edit-btn">
+                  ✏️
+                </button>
               </div>
               <!--// task actions //-->
             </div>
