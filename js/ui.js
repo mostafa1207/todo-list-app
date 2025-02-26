@@ -1,4 +1,4 @@
-import { tasks, deleteTask } from "./tasks.js";
+import { tasks, deleteTask, editTaskTitle } from "./tasks.js";
 
 function createBtns() {
   const btnTexts = ["❌", "✅", "✏️"];
@@ -52,12 +52,31 @@ function appendTasks() {
 function handleDeleteTask(deleteBtn) {
   const taskDiv = deleteBtn.closest(".task");
   if (!taskDiv) return;
+
   const taskTitle = taskDiv.querySelector(".task-title")?.textContent;
   if (!confirm(`هل أنت متأكد من أنك تريد حذف ${taskTitle}؟`)) return;
+
   taskDiv.remove();
   const taskId = Number(taskDiv.dataset.id);
   deleteTask(taskId);
-  console.log(tasks);
 }
 
-export { appendTasks, handleDeleteTask };
+function handleEditTask(btn) {
+  const taskDiv = btn.closest(".task");
+  if (!taskDiv) return;
+
+  const taskTitleElement = taskDiv.querySelector(".task-title");
+  if (!taskTitleElement) return;
+
+  const newTitle = prompt(
+    "الرجاء تعديل عنوان المهمة",
+    taskTitleElement.textContent
+  );
+  if (!newTitle) alert("عذرا لا يمكنك إدخال عنوان فارغ");
+
+  taskTitleElement.textContent = newTitle;
+  const taskId = Number(taskDiv.dataset.id);
+  editTaskTitle(taskId, newTitle);
+}
+
+export { appendTasks, handleDeleteTask, handleEditTask };

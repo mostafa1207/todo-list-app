@@ -36,12 +36,23 @@ function addTask(taskTitle) {
   tasks.push(newTask);
 }
 
-function deleteTask(taskId) {
+function getTaskIndex(taskId) {
   const index = tasks.findIndex((task) => {
     return task.id == taskId;
   });
+  return index;
+}
+
+function deleteTask(taskId) {
+  const index = getTaskIndex(taskId);
   if (index == -1) return;
   tasks.splice(index, 1);
 }
 
-export { tasks, addTask, deleteTask };
+function editTaskTitle(taskId, newTitle) {
+  const index = getTaskIndex(taskId);
+  if (index == -1) return;
+  tasks[index].title = newTitle;
+}
+
+export { tasks, addTask, deleteTask, editTaskTitle };
