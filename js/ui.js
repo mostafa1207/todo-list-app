@@ -72,7 +72,10 @@ function handleEditTask(btn) {
     "الرجاء تعديل عنوان المهمة",
     taskTitleElement.textContent
   );
-  if (!newTitle) alert("عذرا لا يمكنك إدخال عنوان فارغ");
+  if (!newTitle) {
+    alert("عذرا لا يمكنك إدخال عنوان فارغ");
+    return;
+  }
 
   taskTitleElement.textContent = newTitle;
   const taskId = Number(taskDiv.dataset.id);
