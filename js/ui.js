@@ -1,7 +1,7 @@
 import { tasks, deleteTask, editTaskTitle } from "./tasks.js";
 
 function createBtns() {
-  const btnTexts = ["❌", "✅", "✏️"];
+  const btnTexts = ["❌", "⬜", "✏️"];
   const btnsClasses = ["delete-btn", "done-btn", "edit-btn"];
 
   const btns = btnTexts.map((text, index) => {
@@ -72,7 +72,8 @@ function handleEditTask(btn) {
     "الرجاء تعديل عنوان المهمة",
     taskTitleElement.textContent
   );
-  if (!newTitle) {
+  if (newTitle === null) return;
+  else if (newTitle === "") {
     alert("عذرا لا يمكنك إدخال عنوان فارغ");
     return;
   }
