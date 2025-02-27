@@ -1,8 +1,14 @@
-import { tasks, deleteTask, editTaskTitle } from "./tasks.js";
+import {
+  tasks,
+  deleteTask,
+  editTaskTitle,
+  toggleTaskCompletion,
+  getCompleted,
+} from "./tasks.js";
 
 function createBtns() {
   const btnTexts = ["❌", "⬜", "✏️"];
-  const btnsClasses = ["delete-btn", "done-btn", "edit-btn"];
+  const btnsClasses = ["delete-btn", "complete-btn", "edit-btn"];
 
   const btns = btnTexts.map((text, index) => {
     const btn = document.createElement("button");
@@ -83,4 +89,18 @@ function handleEditTask(btn) {
   editTaskTitle(taskId, newTitle);
 }
 
-export { appendTasks, handleDeleteTask, handleEditTask };
+function handleTaskCompletion(btn) {
+  const taskDiv = btn.closest(".task");
+  if (!taskDiv) return;
+
+  const taskId = Number(taskDiv.dataset.id);
+
+  toggleTaskCompletion(taskId);
+
+  const completed = getCompleted(taskId);
+
+  taskDiv.classList.toggle("completed-task", completed);
+  btn.textContent = completed ? "✅" : "⬜";
+}
+
+export { appendTasks, handleDeleteTask, handleEditTask, handleTaskCompletion };

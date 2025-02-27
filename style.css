@@ -105,6 +105,11 @@ button.circular-btn {
   box-shadow: 0 5px 10px rgba(97, 97, 97, 0.8);
 }
 
+.completed-task {
+  background-color: rgba(158, 253, 160, 0.6);
+  /* transition: background-color 0.3s ease-in-out; */
+}
+
 .task-info,
 .task-actions {
   gap: 10px;
@@ -120,4 +125,5 @@ button.circular-btn {
 
 .task-info span {
   color: #9ca3af;
+  font-size: 12px;
 }
