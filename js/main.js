@@ -4,8 +4,9 @@ import {
   handleEditTask,
   handleTaskCompletion,
 } from "./ui.js";
-import { addTask } from "./tasks.js";
+import { addTask, initTasks } from "./tasks.js";
 
+initTasks();
 appendTasks();
 
 document.getElementById("add-btn").addEventListener("click", () => {

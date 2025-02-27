@@ -6,8 +6,8 @@ import {
   getCompleted,
 } from "./tasks.js";
 
-function createBtns() {
-  const btnTexts = ["❌", "⬜", "✏️"];
+function createBtns(completed) {
+  const btnTexts = completed ? ["❌", "✅", "✏️"] : ["❌", "⬜", "✏️"];
   const btnsClasses = ["delete-btn", "complete-btn", "edit-btn"];
 
   const btns = btnTexts.map((text, index) => {
@@ -35,11 +35,12 @@ function createTasksDivs() {
 
     const taskActions = document.createElement("div");
     taskActions.classList.add("task-actions");
-    const btns = createBtns();
+    const btns = createBtns(task.completed);
     taskActions.append(...btns);
 
     const taskDiv = document.createElement("div");
     taskDiv.classList.add("task");
+    if (task.completed) taskDiv.classList.add("completed-task");
     taskDiv.dataset.id = task.id;
     taskDiv.append(taskInfo, taskActions);
 

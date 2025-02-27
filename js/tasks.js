@@ -1,23 +1,18 @@
-const tasks = [
-  {
-    id: 0,
-    title: "قراءة كتاب",
-    date: "1/1/2001",
-    completed: false,
-  },
-  {
-    id: 1,
-    title: "إنهاء المشروع",
-    date: "2/1/2001",
-    completed: false,
-  },
-  {
-    id: 2,
-    title: "التسوق",
-    date: "3/1/2001",
-    completed: false,
-  },
-];
+let tasks = [];
+
+function saveTasks() {
+  const tasksStr = JSON.stringify(tasks);
+  localStorage.setItem("tasks", tasksStr);
+}
+
+function loadTasks() {
+  const tasksStr = localStorage.getItem("tasks");
+  return JSON.parse(tasksStr) ?? [];
+}
+
+function initTasks() {
+  tasks = loadTasks();
+}
 
 function addTask(taskTitle) {
   const date = new Date();
@@ -34,6 +29,7 @@ function addTask(taskTitle) {
   };
 
   tasks.push(newTask);
+  saveTasks();
 }
 
 function getTaskIndex(taskId) {
@@ -45,18 +41,21 @@ function deleteTask(taskId) {
   const index = getTaskIndex(taskId);
   if (index === -1) return;
   tasks.splice(index, 1);
+  saveTasks();
 }
 
 function editTaskTitle(taskId, newTitle) {
   const index = getTaskIndex(taskId);
   if (index === -1) return;
   tasks[index].title = newTitle;
+  saveTasks();
 }
 
 function toggleTaskCompletion(taskId) {
   const index = getTaskIndex(taskId);
   if (index === -1) return;
   tasks[index].completed = !tasks[index].completed;
+  saveTasks();
 }
 
 function getCompleted(taskId) {
@@ -67,6 +66,7 @@ function getCompleted(taskId) {
 
 export {
   tasks,
+  initTasks,
   addTask,
   deleteTask,
   editTaskTitle,
