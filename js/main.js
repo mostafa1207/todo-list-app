@@ -1,5 +1,6 @@
 import {
-  appendTasks,
+  renderTasks,
+  appendTaskToUI,
   handleDeleteTask,
   handleEditTask,
   handleTaskCompletion,
@@ -7,14 +8,14 @@ import {
 import { addTask, initTasks } from "./tasks.js";
 
 initTasks();
-appendTasks();
+renderTasks();
 
 document.getElementById("add-btn").addEventListener("click", () => {
   const taskTitle = prompt("الرجاء إدخال المهمة الجديدة");
   if (!taskTitle) return;
 
-  addTask(taskTitle);
-  appendTasks();
+  const task = addTask(taskTitle);
+  appendTaskToUI(task);
 });
 
 document.getElementById("tasks").addEventListener("click", (event) => {

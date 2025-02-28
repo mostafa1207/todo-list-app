@@ -15,21 +15,16 @@ function initTasks() {
 }
 
 function addTask(taskTitle) {
-  const date = new Date();
-  const year = date.getFullYear();
-  const month = date.getMonth() + 1;
-  const day = date.getDate();
-  const dateStr = `${day}/${month}/${year}`;
-
   const newTask = {
     id: Date.now(),
     title: taskTitle,
-    date: dateStr,
+    date: new Date().toLocaleDateString(),
     completed: false,
   };
 
   tasks.push(newTask);
   saveTasks();
+  return newTask;
 }
 
 function getTaskIndex(taskId) {

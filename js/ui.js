@@ -20,40 +20,42 @@ function createBtns(completed) {
   return btns;
 }
 
-function createTasksDivs() {
-  const tasksDivs = tasks.map((task) => {
-    const taskTitle = document.createElement("p");
-    taskTitle.classList.add("task-title");
-    taskTitle.textContent = task.title;
+function createTaskDiv(task) {
+  const taskTitle = document.createElement("p");
+  taskTitle.classList.add("task-title");
+  taskTitle.textContent = task.title;
 
-    const taskDate = document.createElement("span");
-    taskDate.textContent = task.date;
+  const taskDate = document.createElement("span");
+  taskDate.textContent = task.date;
 
-    const taskInfo = document.createElement("div");
-    taskInfo.classList.add("task-info");
-    taskInfo.append(taskTitle, taskDate);
+  const taskInfo = document.createElement("div");
+  taskInfo.classList.add("task-info");
+  taskInfo.append(taskTitle, taskDate);
 
-    const taskActions = document.createElement("div");
-    taskActions.classList.add("task-actions");
-    const btns = createBtns(task.completed);
-    taskActions.append(...btns);
+  const taskActions = document.createElement("div");
+  taskActions.classList.add("task-actions");
+  const btns = createBtns(task.completed);
+  taskActions.append(...btns);
 
-    const taskDiv = document.createElement("div");
-    taskDiv.classList.add("task");
-    if (task.completed) taskDiv.classList.add("completed-task");
-    taskDiv.dataset.id = task.id;
-    taskDiv.append(taskInfo, taskActions);
+  const taskDiv = document.createElement("div");
+  taskDiv.classList.add("task");
+  if (task.completed) taskDiv.classList.add("completed-task");
+  taskDiv.dataset.id = task.id;
+  taskDiv.append(taskInfo, taskActions);
 
-    return taskDiv;
-  });
-  return tasksDivs;
+  return taskDiv;
 }
 
-function appendTasks() {
+function renderTasks() {
   const tasksContainer = document.getElementById("tasks");
   tasksContainer.innerHTML = "";
-  const tasksDivs = createTasksDivs();
+  const tasksDivs = tasks.map((task) => createTaskDiv(task));
   tasksContainer.append(...tasksDivs);
+}
+
+function appendTaskToUI(task) {
+  const tasksContainer = document.getElementById("tasks");
+  tasksContainer.append(createTaskDiv(task));
 }
 
 function handleDeleteTask(deleteBtn) {
@@ -104,4 +106,10 @@ function handleTaskCompletion(btn) {
   btn.textContent = completed ? "✅" : "⬜";
 }
 
-export { appendTasks, handleDeleteTask, handleEditTask, handleTaskCompletion };
+export {
+  renderTasks,
+  appendTaskToUI,
+  handleDeleteTask,
+  handleEditTask,
+  handleTaskCompletion,
+};
